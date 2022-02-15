@@ -56,7 +56,7 @@ async function createMutation (graphqlParams, mutationOptions) {
 
   }
 
-  const createdRecord = await model.create(input, { transaction });
+  const createdRecord = await model.create(input, { transaction, context: graphqlParams.context });
 
   await recursiveCreateAssociations({ ...graphqlParams }, { ...mutationOptions }, { input, parentRecord: createdRecord, operation: createMutation, parentModel: model });
 
