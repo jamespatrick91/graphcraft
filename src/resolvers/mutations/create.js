@@ -32,17 +32,17 @@ async function createMutation (graphqlParams, mutationOptions) {
     if (!individually || skipReturning) {
 
       // create records in bulk and return created objects using findall on bulkColumn
-      await model.bulkCreate(input, { transaction, validate: true });
+      await model.bulkCreate(input, { transaction, validate: true, context: graphqlParams.context });
 
       if (returning && bulkColumn) {
-        return model.findAll({ where: { [bulkColumn]: bulkIdentifier }, transaction });
+        return model.findAll({ where: { [bulkColumn]: bulkIdentifier }, transaction, context: graphqlParams.context });
       }
 
     } else {
 
       // create records individually and return created objects if returning is set to true
       const createdRecords = await Promise.all(
-        input.map((record) => model.create(record, { transaction }))
+        input.map((record) => model.create(record, { transaction, context: graphqlParams.context }))
       );
 
       if (returning) {
