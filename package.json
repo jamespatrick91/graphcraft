@@ -49,7 +49,7 @@
     "dataloader-sequelize": "^2.3.3",
     "graphql-relay": "^0.6.0",
     "graphql-request": "^3.4.0",
-    "graphql-sequelize": "github:jamespatrick91/graphql-sequelize#master",
+		"graphql-sequelize": "^9.4.3",
     "lodash": "^4.17.21",
     "uuid": "^8.3.2"
   },
