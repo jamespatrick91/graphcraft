@@ -135,7 +135,7 @@ function generateAssociationFields(associations, existingTypes = {}, isInput = f
     const target = relation.target;
 
     if (!existingTypes[target.name]) {
-      return fields;
+      continue;
     }
 
     // BelongsToMany is represented as a list, just like HasMany
