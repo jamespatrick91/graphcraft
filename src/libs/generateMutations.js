@@ -195,6 +195,9 @@ module.exports = (options) => {
 
     }
 
+		if (!Object.keys(fields).length)
+			return ''
+
     return new GraphQLObjectType({
       name: options.naming.rootMutations,
       fields

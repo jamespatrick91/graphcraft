@@ -76,7 +76,7 @@ function generateGraphQLField(fieldType, existingTypes = {}) {
     } else if (isArray === 2) {
       field = new GraphQLNonNull(new GraphQLList(field));
     } else if (isArray === 3) {
-      field = new GraphQLList(GraphQLNonNull(field));
+      field = new GraphQLList(new GraphQLNonNull(field));
     }
 
   } else if (isRequired) {
