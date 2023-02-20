@@ -141,7 +141,7 @@ module.exports = (options) => {
     // Setup Custom Queries
     for (const query in allCustomQueries) {
 
-      if (isAvailable(exposeOnly.mutations, query)) {
+      if (isAvailable(exposeOnly.queries, query)) {
 
         const currentQuery = allCustomQueries[query];
         const type = currentQuery.output ? generateGraphQLField(currentQuery.output, outputTypes) : GraphQLInt;
