@@ -79,7 +79,10 @@ module.exports = (options) => {
     const scope = Array.isArray(graphql.scopes) ? { method: [graphql.scopes[0], _.get(variablePath, graphql.scopes[1], graphql.scopes[2] || null)] } : graphql.scopes;
     const resolverOptions = {
       before,
-      separate: isAssociation
+      separate: isAssociation,
+			contextToOptions: {
+				useMaster: "useMaster"
+			}
     };
 
     const data = await resolver((isAssociation ? model : model.scope(scope)), resolverOptions)(source, args, context, info);
