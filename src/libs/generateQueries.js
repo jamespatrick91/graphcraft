@@ -76,7 +76,10 @@ module.exports = (options) => {
       if ((options.findOneQueries === true || (Array.isArray(options.findOneQueries) && options.findOneQueries.includes(modelType.name))) && isAvailable(exposeOnly.queries, [modelFineOneQueryName])) {
         queries[modelFineOneQueryName] = {
           type: modelType,
-          args: _.omit(defaultArgs(model), ['where']),
+          args: {
+						..._.omit(defaultArgs(model), ['where']),
+						...includeArguments
+					},
           resolve: (source, args, context, info) => {
 
             if (!isAvailable(exposeOnly.queries, [modelFineOneQueryName]) && exposeOnly.throw) {
@@ -93,7 +96,8 @@ module.exports = (options) => {
         queries[modelCountQueryName] = {
           type: GraphQLInt,
           args: {
-            where: defaultListArgs().where
+            where: defaultListArgs().where,
+						...includeArguments
           },
           resolve: (source, { where }, context, info) => {
 
