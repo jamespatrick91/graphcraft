@@ -170,7 +170,7 @@ async function updateMutation (graphqlParams, mutationOptions) {
   const variablePath = { args, context };
   const scope = Array.isArray(model.graphql.scopes) ? { method: [model.graphql.scopes[0], _.get(variablePath, model.graphql.scopes[1], model.graphql.scopes[2] || null)] } : model.graphql.scopes;
 
-  await model.scope(scope).update(input, { where, transaction });
+  await model.scope(scope).update(input, { where, transaction, context });
   await recursiveUpdateAssociations({ ...graphqlParams }, { ...mutationOptions }, { input, parentRecord: input, parentModel: model });
 
   if (skipReturning) {
