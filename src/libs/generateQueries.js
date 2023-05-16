@@ -77,7 +77,7 @@ module.exports = (options) => {
         queries[modelFineOneQueryName] = {
           type: modelType,
           args: {
-						..._.omit(defaultArgs(model), []),
+						..._.omit(defaultArgs(model), ['where']),
 						...includeArguments
 					},
           resolve: (source, args, context, info) => {
