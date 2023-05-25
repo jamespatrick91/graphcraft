@@ -48,7 +48,12 @@ module.exports = (options) => {
 
       // model must have atleast one query to implement.
       if (model && (!model.graphql.excludeQueries.includes('fetch') || customQueryNames.length)) {
-        if (isAvailable(exposeOnly.queries, toBeGenerated) && !exposeOnly.throw) {
+        if (
+          (
+            isAvailable(exposeOnly.queries, toBeGenerated) ||
+            isAvailable(exposeOnly.queries, `${toBeGenerated}Single`)
+          ) && !exposeOnly.throw
+        ) {
           createQueriesFor[outputTypeName] = outputTypes[outputTypeName];
         }
       }
